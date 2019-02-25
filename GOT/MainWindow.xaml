@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GOT"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.Background>
+            <ImageBrush ImageSource="http://content-en.caillou.com/uploads/2016/03/Caillou_Character_Caillou_719x405.jpg"
+                        Stretch="UniformToFill">
+            </ImageBrush>
+        </Grid.Background>
+        <TextBlock x:Name="txtBlockQuote" HorizontalAlignment="Left" Margin="539,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="153" Width="243" FontWeight="Bold" FontFamily="Showcard Gothic" FontSize="18"/>
     </Grid>
 </Window>

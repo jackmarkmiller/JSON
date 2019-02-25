@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,28 @@ namespace GOT
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var response = client.GetAsync(@"http://got-quotes.herokuapp.com/quotes").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    HerokuQuote q = JsonConvert.DeserializeObject<HerokuQuote>(content);
+                    txtBlockQuote.Inlines.Add(new Italic(new Run(q.quote)));
+                    txtBlockQuote.Inlines.Add(new Italic(new Run(q.character)));
+
+
+                }
+            }
         }
     }
 }
